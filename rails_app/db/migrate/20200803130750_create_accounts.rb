@@ -4,7 +4,7 @@ class CreateAccounts < ActiveRecord::Migration[6.0]
       t.text :first_name
       t.text :last_name
       t.string :email
-      tf.password_field :password
+      t.string :password 
       t.string :avatar
 
       t.timestamps
