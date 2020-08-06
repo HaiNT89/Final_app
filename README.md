@@ -14,3 +14,12 @@ Chưa hoàn thành
 <li>Chưa tạo được validate "Maximum size for each image is 5Mb" cho photo và album và "Maximum size for each image is 2Mb" cho avatar </li>
 <li>Chưa thiết kế được following</li>
 </ul>
+
+Mô tả database
+<ul>
+<li>Có 4 model: Account, Album, Photo, Reaction</li>
+<li>Account sẽ quan hệ 1-n vơi Album (1 Account có thể tạo được 1 hoặc nhiều Album, và 1 Album sẽ được tạo bởi 1 Account)</li>
+<li>Account sẽ quan hệ 1-n vơi Photo (1 Account có thể tạo được 1 hoặc nhiều Photo, và 1 Photo sẽ được tạo bởi 1 Account)</li>
+<li>Album sẽ quan hệ 1-n vơi Photo (1 Album có thể có 1 hoặc nhiều Photo, và 1 Photo có thể thuộc Album hoặc không thuộc Alum nào, tức là Photo đó có thể được tạo riêng lẽ bởi người dùng hoặc khi tạo Album và tải hình lên thì Photo đó có album_id là khóa ngoại, khi xóa album thì Photo nào có khóa ngoại Album đó sẽ bị xóa theo)</li>
+<li>Reaction là lưu thông tin tương tác với Photo hoặc Album, Reaction sẽ tương tác với 2 model Photo và Album thông qua polymorphic association, khi tương tác vào photo thì sẽ lưu type là Photo ngược lại thì lưu Album</li>
+</ul>
