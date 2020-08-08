@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     resources :signup, :login, only: :create
     resources :photos, :albums
     resources :profiles, except: [:index,:create]
+    resources :accounts
   end
 end
