@@ -7,6 +7,7 @@ Nội dung đã hoàn thành:
 <li>Tạo db và validate cho db</li>
 <li>Tạo "accepted formats are jpeq, png and gif" cho album và photo</li>
 <li>Tạo "accepted formats are jpeq, png" cho avatar</li>
+<li>Tạo routes cho controller</li>
 </ul>
 
 Chưa hoàn thành
@@ -14,7 +15,6 @@ Chưa hoàn thành
 <li>Chưa tạo được validate "Maximum size for each image is 5Mb" cho photo và album và "Maximum size for each image is 2Mb" cho avatar </li>
 
 </ul>
-
 Mô tả database
 <ul>
 <li>Có 4 model: Account, Album, Photo, Reaction, Follow</li>
