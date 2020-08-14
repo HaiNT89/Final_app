@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <!--Styles Css-->
+    <link href="/font/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <title>Fotobook-Signup</title>
+</head>
+
+<body>
+    <div class="container-fluid navbar_bg">
+        <div class="container">
+            <nav class="navbar navbar-expand-sm navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-search"></i>
+                  </button>
+                <a class="navbar-brand" href="#">Fotobook</a>
+                <div class="collapse navbar-collapse">
+                    <form class="form  my-0 custom_input">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search Photo/Album" aria-label="Search">
+                    </form>
+                </div>
+                <a class="navbar-brand navbar-brand_login" href="login.html">Login</a>
+            </nav>
+
+        </div>
+    </div>
+
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+
+    <div class="container">
+
+        <div class="collapse navbar-collapse response_Search" id="navbarTogglerDemo01">
+            <form class="form  my-0 reponse_input">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search Photo/Album" aria-label="Search">
+            </form>
+        </div>
+
+
+
+        <div class="row justify-content-center mt-5">
+            <!--Grid column-->
+            <div class="col-sm-8 col-md-4">
+                <div class="login  align-items-center">
+                    <!-- <div class="card-body"> -->
+                    <div class="div_title">
+                        Fotobook Signup
+                    </div>
+                    <div class="card mt-3  ">
+                        <div class="card-body card_body_logo">
+                            <div class="div_logo">
+                                <img src="../Image/logo_google.png" class="img_logo float-left  ">
+                                <img src="../Image/logo_face.png" class="img_logo  ">
+                                <img src="../Image/logo_twitte.png" class="img_logo float-right">
+                            </div>
+                        </div>
+                    </div>
+                    <div class='card'>
+                        <%= form_for @account do |f|%>
+                            <div class="form-group">
+                                <%=f.label :first_name, "first_name"%>
+                                <%=f.text_field :first_name%>
+
+                            </div>
+                            <div class="form-group">
+                               <%=f.label :last_name, "last_name"%>
+                                <%=f.text_field :last_name%>
+                            </div>
+                            <div class="form-group">
+                                <%=f.label :email, "email"%>
+                                <%=f.text_field :email%>
+                            </div>
+                            <div class="form-group">
+                                <%=f.label :password, "password"%>
+                                <%=f.password_field :password %>
+                            </div>
+                            
+                            <div class="text-center">
+                                 <%= f.submit "Register", class: "btn btn-success" %>
+                            </div>
+                        <%end%>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <!--Grid column-->
+        </div>
+    </div>
+    <script type="text/javascript" src="../JS/javascript.js"></script>
+
+
+</body>
+
+</html>

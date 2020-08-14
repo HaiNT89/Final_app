@@ -66,6 +66,7 @@ body {
 
 .card {
     border-radius: 1rem;
+    /* width: 300px; */
 }
 
 .card_body_logo {
