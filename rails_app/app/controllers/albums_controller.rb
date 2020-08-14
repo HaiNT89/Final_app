@@ -8,16 +8,7 @@ class AlbumsController < ApplicationController
         @albums = Album.new
     end
 
-    def create
-        @albums = Album.new album_params
-        if @albums.save
-            flash[:success] = "Register success"
-            redirect_to albums_path
-        else
-            flash[:success] = "Register failed"
-            render :new
-        end
-    end
+    
     
    
     def edit

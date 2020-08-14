@@ -10,7 +10,8 @@ class AccountsController < ApplicationController
     def create
         @account = Account.new account_params
         if @account.save
-            flash[:success] = "Register success"
+            flash[:success] = "Register success, please check mail!"
+            UserMailer.welcome_email(@account).deliver_later
             redirect_to accounts_path
         else
             flash[:success] = "Register failed"
@@ -19,6 +20,6 @@ class AccountsController < ApplicationController
     end
     private
     def account_params
-        params.require(:account).permit :first_name, :last_name, :email, :password
+        params.require(:account).permit :first_name, :last_name, :email
     end
 end

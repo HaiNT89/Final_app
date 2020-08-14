@@ -17,9 +17,12 @@ Rails.application.routes.draw do
   #   resources :profiles, except: [:index,:create]
   #   resources :accounts
   # end
-
+    resources :accounts
     resources :albums
     resources :newest
+    # namespace :access do
+    #   resources :albums
+    # end
 
     # patch "/albums", to: "albums#update"
     # get 'newest', to: 'newest#index'
