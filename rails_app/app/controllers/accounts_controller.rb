@@ -10,8 +10,9 @@ class AccountsController < ApplicationController
     def create
         @account = Account.new account_params
         if @account.save
+            SendEmailJob.set(wait: 5.minutes).perform_later @account
             flash[:success] = "Register success, please check mail!"
-            UserMailer.welcome_email(@account).deliver_later
+            # UserMailer.welcome_email(@account).deliver_later
             redirect_to accounts_path
         else
             flash[:success] = "Register failed"

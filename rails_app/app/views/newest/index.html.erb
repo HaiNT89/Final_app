@@ -91,42 +91,55 @@
                             <div class="items mt-3 mb-3 d-flex">
                                 <div class="col-6 p-0">
                                     <div class="left-item" data-toggle="modal" data-target="#exampleModalCenter">
-                                        <img src="https://picsum.photos/300">
+                                        <img src="https://picsum.photos/300" data-toggle="modal" data-target="#exampleModalCenter">
                                         
                                     </div>
                                 </div>
                                 <div class="col-6 p-2">
+                                
                                     <div class="right-item">
                                         <div class="header-item d-flex">
                                             <div class="circle-name">TH</div>
-                                            <div class="name">Thanh Hai</div>
+                                            <div class="name"><%=@account.where(id: album.account_id).take.last_name%></div>
                                         </div>
                                         <div class="body-item">
                                             <h3 class="title"><%= link_to album.title_album,album%></h3>
                                             <h6><%= link_to "Edit", edit_album_path(album)%></h6>
+                                             <!--<h6><%= album.id%></h6>-->
                                             <p class="description m-0"></p>
                                         </div>
                                         <div class="footer-item d-flex justify-content-between">
 
                                             <div class="date-time">
                                                 <span><%= album.created_at%></span>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-                    
-                      
-
-                      
-                       
-
-                       
-                        
+ 
                         <%end%>
                     </div>
                     
@@ -134,6 +147,10 @@
             </div>
         </div>
     </div>
+ 
+
+<!-- Modal -->
+    
 </body>
 
 </html>

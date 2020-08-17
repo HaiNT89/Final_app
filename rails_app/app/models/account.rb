@@ -4,10 +4,7 @@ class Account < ApplicationRecord
     has_many :reactions, dependent: :destroy
 
     ###
-    after_create :welcome_email
-    def welcome_email
-        UserMailer.welcome_email(self).deliver
-    end
+    
 
     # #follow
     # has_many :followed_users, foreign_key: :follower_id, class_name: "Follow"
