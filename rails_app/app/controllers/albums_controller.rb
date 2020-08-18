@@ -20,15 +20,9 @@ class AlbumsController < ApplicationController
     
     def show
         @albums = Album.find(params[:id])
-        #@a = @albums.account_id
         @photo = Photo.where(album_id: @albums)
-        @b = Account.where(id: @albums.account_id)
-
-        # @test = Account.joins(:photos).where(id: @albums)
- 
+        @b = Account.where(id: @albums.account_id) 
     end
-
-
     private
     def album_params
         params.require(:album).permit :title_album
