@@ -1,15 +1,86 @@
-<%= form_for @photos do |f| %>
-    <%= f.submit "Post", class: "btn btn-primary" %>
-    <span class="picture">
-    	<%= f.file_field :source_photo, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
-    </span>
-<% end %>
+<nav class="nav-bar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                    <div class="nav-bar-brand">
+                        <a href="#">Fotobook</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-3">
+                    <div class="search-text">
+                        <input type="text" name="search" id="search" placeholder="Search Photo / Album">
+                    </div>
+                </div>
 
-<script type="text/javascript">
-	$("#micropost_picture").bind("change", function(){
-    	var size_in_megabytes = this.files(0).size/1024/1024;
-        if (size_in_megabytes > 1) {
-        	alert("Maximum file size is 1MB. Please choose an other file!");
-        }
-    });
-</script>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                    <div class="account">
+                        <div class="avatar">
+                            <img src="https://picsum.photos/300">
+                        </div>
+                        <div class="name">
+                            <span>Hieu Nguyen</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                    <div class="btn-log">
+                        <a href="#">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row pt-1 out-card pb-5">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-12 p-0">
+                <div class="left-col d-flex">
+                    <ul class="list pt-4">
+                        <li>
+                            <a class="active" href="#">Feeds</a>
+                        </li>
+                        <li>
+                            <a href="#">Discover</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mid-col col-lg-8 col-md-10 col-sm-10 col-12 p-0 pb-4">
+                <div class="col-12 pl-0 pr-0">
+                    <div class="pt-4 pb-4">
+                        <div class="new-photo">
+                            New Photo
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="col-lg-12 col-12">
+                    <%= form_for @photos do |f| %> 
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-12">
+                                <div class="form-group">
+                                    <%= f.label :title_photo, "Title" %>
+                                    <%= f.text_field :title_photo, class:"form-control" %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.label :mode_photo, "Sharing mode"%>
+                                    <%= f.select :mode_photo,[['Public', 'Public'], ['Private', 'Private']], {}, {class:'form-control'} %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.file_field :source_photo, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-12">
+                                <div class="form-group">
+                                    <%= f.label :mode_photo, "Description"%>
+                                    <%= f.text_area :description_photo, class:"form-control" %>
+                                </div>
+                            </div>
+                        </div>
+                        <%= f.submit "Update", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+<%= stylesheet_link_tag "style_form.css" %>
