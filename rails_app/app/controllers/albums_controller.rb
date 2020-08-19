@@ -18,14 +18,11 @@ class AlbumsController < ApplicationController
             render 'edit'
         end
     end
-    
     def show
         @albums = Album.find(params[:id])
         @photos = @albums.photos
         @account = @albums.account
     end
-
-
     private
     def album_params
         params.require(:album).permit(avatars: [])
