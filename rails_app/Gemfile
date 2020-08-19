@@ -54,7 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 gem "jquery-validation-rails"
-gem "bootstrap",'~>4.0.0'
+gem "bootstrap",'~>4.3.1'
 gem "sidekiq", '5.2.7'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
