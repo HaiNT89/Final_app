@@ -1,57 +1,116 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <!--Styles Css-->
-    <link href="/font/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/style_feed.css" />
-    <title>Fotobook-Login</title>
-</head>
+<nav class="nav-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                <div class="nav-bar-brand">
+                    <a href="#">Fotobook</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-3">
+                <div class="search-text">
+                    <input type="text" name="search" id="search" placeholder="Search Photo / Album" />
+                </div>
+            </div>
 
-<body>
-
-
-    <div class="container">
-
-
-
-        <!-- 
-        <div class="row justify-content-center mt-5"> -->   
-         <h2>List Album</h2>
-        <!-- <script type="text/javascript " src="../JS/javascript.js "></script> -->
-        <div class="row justify-content-center mt-5">
-       
-            <% @albums.each  do |album| %>
-                <div class="col-md-5">
-                    <div class="card flex-md-row mb-4 box-shadow ">
-                        <div class="card-body d-flex flex-column align-items-start card_body_content">
-                            <strong class="d-inline-block mb-2 text-primary"></strong>
-                            <h3 class="mb-0">
-                                <a class="text-dark" href="#"><%= album.title_album%></a>
-                            </h3>
-                            <div class="mb-1 text-muted"><%= album.created_at%></div>
-                            <h6><%= link_to "Edit", edit_album_path(album)%></h6>
-                        </div>
-
+            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                <div class="account">
+                    <div class="avatar">
+                        <img src="https://picsum.photos/300" />
+                    </div>
+                    <div class="name">
+                        <span>Hieu Nguyen</span>
                     </div>
                 </div>
-            <% end %>
-
-
-
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                <div class="btn-log">
+                    <a href="#">Log out</a>
+                </div>
+            </div>
         </div>
     </div>
+</nav>
 
-
-</body>
-
-
-
-
+<div class="container-fluid">
+    <div class="row pt-1 out-card pb-5">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-12 p-0">
+            <div class="left-col d-flex">
+                <ul class="list pt-4">
+                    <li>
+                        <a class="active" href="#">Feeds</a>
+                    </li>
+                    <li>
+                        <a href="#">Discover</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mid-col col-lg-8 col-md-10 col-sm-10 col-12 p-0 pb-4">
+            <div class="col-12 pl-0 pr-0">
+                <div class="pt-4 pb-4">
+                    <div class="btn-select d-flex">
+                        <a href="#">Photo</a>
+                        <a class="active" href="#">Album</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-12">
+                <div class="row">
+                <%@albums.each do |album|%>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="items mt-3 mb-3 d-flex">
+                            <div class="col-6 p-0">
+                                <div class="left-item">
+                                    <img src="https://picsum.photos/300" style="
+                          position: absolute;
+                          transform: rotate(20deg);
+                          top: 0;
+                          bottom: 0;
+                          left: 0;
+                          right: 0;
+                        " />
+                                    <img src="https://picsum.photos/300" style="
+                          position: absolute;
+                          transform: rotate(10deg);
+                          top: 0;
+                          bottom: 0;
+                          left: 0;
+                          right: 0;
+                        " />
+                                    <%# <img src="https://picsum.photos/300" /> %>
+                                    <%# <%= image_tag album.source_album.url if album.source_album? %>
+                                </div>
+                            </div>
+                            <div class="col-6 p-2">
+                                <div class="right-item">
+                                    <div class="header-item d-flex">
+                                        <div class="circle-name">HN</div>
+                                        <div class="name"><%=@accounts.where(id: album.account_id).take.last_name%></div>
+                                    </div>
+                                    <div class="body-item">
+                                        <h5><%= link_to album.title_album,album%></h5>
+                                        <h6><%= link_to "Edit", edit_album_path(album)%></h6>
+                                        <p class="description m-0">
+                                            
+                                        </p>
+                                    </div>
+                                    <div class="footer-item d-flex justify-content-between" style="font-size: 12px;">
+                                        <div class="reaction">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="heart-count">123</span>
+                                        </div>
+                                        <div class="date-time">
+                                            <span><%=album.created_at%></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= stylesheet_link_tag "albums.css" %>

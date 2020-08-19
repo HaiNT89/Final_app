@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :accounts
     resources :albums
     resources :newest
+    resources :photos
+    
     # namespace :access do
     #   resources :albums
     # end

@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
     def index
         @albums = Album.order(:created_at).last(6)    
+        @accounts = Account.joins(:albums)
     end
     def new
         @albums = Album.new
@@ -20,12 +21,14 @@ class AlbumsController < ApplicationController
     
     def show
         @albums = Album.find(params[:id])
-        @photo = Photo.where(album_id: @albums)
-        @b = Account.where(id: @albums.account_id) 
+        @photos = @albums.photos
+        @account = @albums.account
     end
+
+
     private
     def album_params
-        params.require(:album).permit :title_album
+        params.require(:album).permit(avatars: [])
     end
 
 end
