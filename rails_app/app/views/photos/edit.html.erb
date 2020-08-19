@@ -1,10 +1,7 @@
 <%= form_for @photos do |f| %>
-	<div class="field">
-    	<%= f.text_area :source_photo, placeholder: "Create new post ..." %>
-    </div>
     <%= f.submit "Post", class: "btn btn-primary" %>
     <span class="picture">
-    	<%= f.file_field :picture, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
+    	<%= f.file_field :source_photo, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
     </span>
 <% end %>
 

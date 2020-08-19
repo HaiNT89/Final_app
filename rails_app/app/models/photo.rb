@@ -1,7 +1,7 @@
 class Photo < ApplicationRecord
     belongs_to :account
     has_many :reactions, as: :reactable, dependent: :destroy
-
+    mount_uploader :source_photo, PictureUploader
     # validates :title_photo, :description_photo, :source_photo, :mode_photo, presence: true
     # validates :title_photo, length: {minimum:5, maximum:140}
     # validates :description_photo, length: {minimum:10, maximum:300}

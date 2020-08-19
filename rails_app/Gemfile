@@ -59,5 +59,6 @@ gem "sidekiq", '5.2.7'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem "carrierwave"
+gem 'devise'
 
 

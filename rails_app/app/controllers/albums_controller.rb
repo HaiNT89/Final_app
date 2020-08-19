@@ -2,7 +2,8 @@ class AlbumsController < ApplicationController
     def index
         @albums = Album.order(:created_at).last(6)    
         @accounts = Account.joins(:albums)
-    end
+        #@accounts = @albums.account
+     end
     def new
         @albums = Album.new
     end
@@ -13,7 +14,7 @@ class AlbumsController < ApplicationController
         @albums = Album.find(params[:id])
         if @albums.update(album_params)
             flash[:success] = 'The album has just updated'
-            redirect_to '/newest'     
+            redirect_to albums_path     
         else
             render 'edit'
         end

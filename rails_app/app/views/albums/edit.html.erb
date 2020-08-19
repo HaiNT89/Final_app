@@ -1,7 +1,6 @@
 <%= form_for(@albums, html: {multipart: true}) do |f|%>
     <span class="picture">
     	<%= f.file_field :avatars, multiple: true %>
-        <%= f.file_field :avatars, multiple: true %>
     </span>
     <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
