@@ -24,7 +24,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-3">
                 <div class="btn-log">
-                    <a href="#">Log out</a>
+                    <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
                 </div>
             </div>
         </div>

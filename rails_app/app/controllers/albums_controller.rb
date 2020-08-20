@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+    before_action :authenticate_user!, only: [:index, :new]
     def index
         @albums = Album.order(:created_at).last(6)    
         @accounts = Account.joins(:albums)

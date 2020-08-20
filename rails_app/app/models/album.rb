@@ -1,5 +1,5 @@
 class Album < ApplicationRecord
-    belongs_to :account
+    belongs_to :user
     has_many :photos, dependent: :destroy
     has_many :reactions, as: :reactable, dependent: :destroy
     mount_uploaders :avatars, PictureUploader
