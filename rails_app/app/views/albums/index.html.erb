@@ -56,57 +56,55 @@
             </div>
             <div class="col-lg-12 col-12">
                 <div class="row">
-                <%@albums.each do |album|%>
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="items mt-3 mb-3 d-flex">
-                            <div class="col-6 p-0">
-                                <div class="left-item">
-                                    <%# <img src="https://picsum.photos/300" style="
-                          position: absolute;
-                          transform: rotate(20deg);
-                          top: 0;
-                          bottom: 0;
-                          left: 0;
-                          right: 0;
-                        " />
-                                    <img src="https://picsum.photos/300" style="
-                          position: absolute;
-                          transform: rotate(10deg);
-                          top: 0;
-                          bottom: 0;
-                          left: 0;
-                          right: 0;
-                        " /> %>
-                                    <img src="https://picsum.photos/300" />
+                    <%@albums.each do |album|%>
+                        <div class="col-lg-6 col-md-12 col-12">
+                            <div class="items mt-3 mb-3 d-flex">
+                                <div class="col-6 p-0">
+                                    <div class="left-item">
+                                        <img src="https://picsum.photos/300" style="
+                                                position: absolute;
+                                                transform: rotate(20deg);
+                                                top: 0;
+                                                bottom: 0;
+                                                left: 0;
+                                                right: 0;" />
+                                        <img src="https://picsum.photos/300" style="
+                                                position: absolute;
+                                                transform: rotate(10deg);
+                                                top: 0;
+                                                bottom: 0;
+                                                left: 0;
+                                                right: 0;" />
+                                        <img src="https://picsum.photos/300" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 p-2">
-                                <div class="right-item">
-                                    <div class="header-item d-flex">
-                                        <div class="circle-name">HN</div>
-                                        <div class="name"><%=@accounts.where(id: album.account_id).take.last_name%></div>
-                                    </div>
-                                    <div class="body-item">
-                                        <h5><%= link_to album.title_album,album%></h5>
-                                        <h6><%= link_to "Edit", edit_album_path(album)%></h6>
-                                        <p class="description m-0">
-                                            
-                                        </p>
-                                    </div>
-                                    <div class="footer-item d-flex justify-content-between" style="font-size: 12px;">
-                                        <div class="reaction">
-                                            <i class="fas fa-heart"></i>
-                                            <span class="heart-count">123</span>
+                                <div class="col-6 p-2">
+                                    <div class="right-item">
+                                        <div class="header-item d-flex">
+                                            <div class="circle-name">HN</div>
+                                            <div class="name"><%=@accounts.where(id: album.account_id).take.last_name%></div>
                                         </div>
-                                        <div class="date-time">
-                                            <span><%=album.created_at%></span>
+                                        <div class="body-item">
+                                            <h5><%= link_to album.title_album,album%></h5>
+                                            <h6><%= link_to "Edit", edit_album_path(album)%></h6>
+                                            <p class="description m-0">
+                                                
+                                            </p>
+                                        </div>
+                                        <div class="footer-item d-flex justify-content-between" style="font-size: 12px;">
+                                            <div class="reaction">
+                                                <i class="fas fa-heart"></i>
+                                                <span class="heart-count">123</span>
+                                            </div>
+                                            <div class="date-time">
+                                                <span><%=album.created_at%></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <%end%>
+                    <%end%>
                 </div>
             </div>
         </div>
