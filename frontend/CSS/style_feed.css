@@ -200,3 +200,9 @@
 .item_heart_blue {
     color: blue;
 }
+
+.modal-content {
+    position: absolute;
+    background: #FFFFFF;
+    border-radius: 5px;
+}

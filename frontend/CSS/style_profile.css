@@ -1,9 +1,9 @@
-:root{
-    --main-color:#3b5998;
+:root {
+    --main-color: #3b5998;
 }
 
-.nav-bar{
-    background:  var(--main-color);
+.nav-bar {
+    background: var(--main-color);
     font-size: 18px;
     padding: 5px 0px;
     position: sticky;
@@ -16,18 +16,17 @@
     text-align: end;
 }
 
-.nav-bar-brand a{
+.nav-bar-brand a {
     color: white;
     padding-top: 2px;
 }
 
-.nav-bar-brand a:hover{
+.nav-bar-brand a:hover {
     color: white;
     text-decoration: none;
 }
 
-
-.search-text input{
+.search-text input {
     width: 100%;
     border-radius: 5px;
     outline: none;
@@ -37,17 +36,17 @@
     height: 30px;
 }
 
-.account{
+.account {
     justify-content: flex-end;
     display: flex;
 }
 
-.account img{
+.account img {
     width: 30px;
     border-radius: 50%;
 }
 
-.account .name{
+.account .name {
     margin-left: 10px;
     color: white;
     font-size: 16px;
@@ -57,125 +56,128 @@
     text-overflow: ellipsis;
 }
 
-.btn-log a{
+.btn-log a {
     color: white;
     padding-top: 2px;
     padding-left: calc(100% - 90%);
     font-size: 16px;
 }
 
-.btn-log a:hover{
+.btn-log a:hover {
     text-decoration: none;
     color: #ffffffaf;
 }
 
-
-.out-card{
+.out-card {
     background-color: #e7e7e7;
 }
 
+
 /* LEFT COL */
-.left-col{
+
+.left-col {
     position: sticky;
     top: 40px;
 }
 
-.left-col .list{
+.left-col .list {
     justify-content: center;
 }
 
-.left-col ul li{
+.left-col ul li {
     list-style-type: none;
     padding-top: 0.5rem;
     font-weight: 600;
 }
 
-.left-col ul li a{
+.left-col ul li a {
     color: grey;
 }
 
-.left-col ul li a:hover{
+.left-col ul li a:hover {
     text-decoration: none;
     color: (var(--main-color));
 }
 
-.left-col ul li a.active{
+.left-col ul li a.active {
     color: var(--main-color);
 }
 
 
 /* MID COL */
-.mid-col{
+
+.mid-col {
     margin-top: 1rem;
     border-radius: 3px;
     background-color: white;
 }
 
-.info-top .avatar{
+.info-top .avatar {
     text-align: center;
 }
 
-.info-top .avatar img{
+.info-top .avatar img {
     width: 80%;
     border-radius: 50%;
 }
 
-.following{
+.following {
     text-align: center;
     display: flex;
 }
 
-.info-top .name h1{
+.info-top .name h1 {
     font-weight: bold;
 }
 
-.sub-info .number{
-    font-size: 25px;
+.sub-info .number {
+    font-size: 20px;
     font-weight: bold;
     color: #a8a8a8cc;
 }
 
-.sub-info .sub-name-info{
-    font-size: 15px;
+.sub-info .sub-name-info {
+    font-size: 10px;
     text-transform: uppercase;
     color: #a8a8a8cc;
     font-weight: bold;
 }
 
-.sub-info .sign-divide{
+.sub-info .sign-divide {
     margin-left: 6px;
     margin-right: 6px;
     color: #a8a8a8cc;
 }
 
-
-.items{
+.items {
     padding: 15px 45px !important;
     border-radius: 4px;
     background: #fffcfc;
     box-shadow: 5px 5px 5px rgba(187, 176, 176, 0.5);
 }
 
-.items .avatar img{
+.items .avatar img {
     width: 70%;
     border-radius: 50%;
 }
 
-.items .avatar{
+.items .avatar {
     text-align: center;
 }
 
-.items .name{
+.items .name {
     text-align: center;
     font-weight: bold;
 }
-.photo, .album{
+
+.photo,
+.album {
     text-align: center;
     color: var(--main-color);
 }
 
-
-.photo .number, .album .number{
+.photo .number,
+.album .number {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 0px;
@@ -183,16 +185,16 @@
     display: block;
 }
 
-.photo .type, .album .type{
+.photo .type,
+.album .type {
     font-size: 15px;
 }
 
-.flw{
+.flw {
     text-align: center;
 }
 
-
-.custom-btn{
+.custom-btn {
     cursor: pointer;
     font-weight: bold;
     outline: none !important;
@@ -204,17 +206,14 @@
     animation: ease-in 0.3s;
 }
 
-
-
-.custom-btn:hover{
+.custom-btn:hover {
     outline: none;
     background-color: #ff4e00;
     background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
     color: white;
 }
 
-
-.custom-btn-following{
+.custom-btn-following {
     cursor: pointer;
     font-weight: bold;
     outline: none !important;
@@ -227,9 +226,8 @@
     color: white;
 }
 
-.custom-btn-following:hover{
+.custom-btn-following:hover {
     outline: none;
     background: white;
     color: #ff4e00;
 }
-
