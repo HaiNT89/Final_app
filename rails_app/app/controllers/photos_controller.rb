@@ -1,12 +1,14 @@
 class PhotosController < ApplicationController
+    before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
     def index
         @photos = Photo.all
+        @users = User.joins(:photos)
     end
     def new
-        @photo = Photo.new
+        @photo = current_user.photos.new
     end
     def create
-        @photo = Photo.new(photo_params)
+        @photo = current_user.photos.new(photo_params)
         if @photo.save
             #flash[:success] = 'The album has just updated'
             redirect_to photos_path
@@ -28,6 +30,6 @@ class PhotosController < ApplicationController
     end
     private
     def photo_params
-        params.require(:photo).permit(:source_photo, :description_photo,:title_photo,:mode_photo)
+        params.require(:photo).permit(:source_photo, :description,:title,:mode_photo)
     end
 end

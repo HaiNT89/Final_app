@@ -1,13 +1,23 @@
 class AlbumsController < ApplicationController
-    #before_action :authenticate_user!, only: [:index, :new]
+    before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
     def index
         @albums = Album.order(:created_at).last(6)
-        @accounts = Account.joins(:albums)
+        @users = User.joins(:albums)
         #@accounts = @albums.account
        
      end
     def new
-        @albums = Album.new
+        @album = current_user.albums.new
+    end
+    def create
+        @album = current_user.albums.new(album_params)
+        if @album.save
+           
+            #flash[:success] = 'The album has just updated'
+            redirect_to albums_path
+        else
+            render 'new'
+        end
     end
     def edit
         @albums = Album.find(params[:id])
@@ -24,11 +34,14 @@ class AlbumsController < ApplicationController
     def show
         @albums = Album.find(params[:id])
         @photos = @albums.photos
-        @account = @albums.account
+        @account = @albums.user
     end
     private
     def album_params
-        params.require(:album).permit(avatars: [])
+        params.require(:album).permit(:title, :description, :mode_album)
     end
-
+    def photo_params
+        params.require(:photo).permit(:title, :description, :mode_photo, :source_photos)
+    end
+    
 end

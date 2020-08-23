@@ -1,43 +1,146 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<nav class="nav-bar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                    <div class="nav-bar-brand">
+                        <%= link_to  "Fotobook", root_path %>   
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-3">
+                    <div class="search-text">
+                        <input type="text" name="search" id="search" placeholder="Search Photo / Album">
+                    </div>
+                </div>
+                
+                <% if user_signed_in? %>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                      <div class="account">
+                          <div class="avatar">
+                              <img src="<%=current_user.avatar%>" alt="None" />
+                          </div>
+                          <div class="name">
+                              <span><%= link_to  current_user.last_name<<current_user.first_name, user_path(current_user), class:"name "%></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                      <div class="btn-log">
+                        <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+                      </div>
+                  </div>
+                <% else %>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                        <div class="btn-log">
+                          <%= link_to "Log in", new_user_session_path %><br />
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div> 
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="row pt-1 out-card">
+            <div class="col-lg-2 col-md-1 col-sm-1 col-12 p-0">
+                <div class="left-col d-flex">
+                    <ul class="list pt-4">
+                        <li >
+                            <a class="active" href="#">Feeds</a>
+                        </li>
+                        <li>
+                            <a href="#">Discover</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-11 col-sm-11 col-12 p-3 mid-col mb-4">
+                <div class="title">
+                    <h5>Edit <%= resource_name.to_s.humanize %> Profile</h5>
+                </div>
+                <div class="row p-5 m-5">
+                    <div class="col-lg-4 col-4">
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <div class="avatar-file">
+                            <input type="file"  accept="image/*" name="image" id="file"   style="display: none;">
+                            <label for="file" style="cursor: pointer;">Upload Image</label>
+                            <img id="output" width="200" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-4">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <p class="title-area">Basic Infomation</p>
+                    </div>
+                    <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
+                        <%= f.label :first_name %>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <%= f.text_field :first_name %>
+                    </div>
+                    <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
+                        <p class="filed-text">Last Name</p>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <%= f.text_field :last_name %>
+                    </div>
+                    <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
+                        <p class="filed-text">Email</p>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                    </div>
+                    <div class="col-lg4 col-4">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <%= f.submit "Save", class:"btn btn-success" %>
+                    </div>
+                  <%end%>
+                    <span class="line-space"></span>
+                    <div class="col-lg-4 col-4">
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <p class="title-area">Password</p>
+                    </div>
+                    <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
+                        <p class="filed-text">Current Password</p>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <%= f.password_field :current_password, autocomplete: "current-password" %>
+                    </div>
+                    <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
+                        <p class="filed-text">New Password</p>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <%= f.password_field :password, autocomplete: "new-password" %>
+                    </div>
+                    <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
+                        <p class="filed-text">Password Confirmation</p>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                    </div>
+                    <div class="col-lg4 col-4">
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+                    </div>
+                    <div class="col-lg-8 col-8">
+                        <button class="btn btn-success">Save</button>
+                    </div>
+                  <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= stylesheet_link_tag "form_edit_profile.css" %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

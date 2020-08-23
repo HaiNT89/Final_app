@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :albums, dependent: :destroy
   has_many :reactions, dependent: :destroy
+  mount_uploader :avatar, PictureUploader
   #follow
   has_many :followed_users, foreign_key: :follower_id, class_name: "Follow"
   has_many :followees, through: :followed_users, source: :person_being_followed

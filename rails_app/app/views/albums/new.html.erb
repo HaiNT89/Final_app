@@ -1,0 +1,96 @@
+<nav class="nav-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                <div class="nav-bar-brand">
+                    <a href="#">Fotobook</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-3">
+                <div class="search-text">
+                    <input type="text" name="search" id="search" placeholder="Search Photo / Album" />
+                </div>
+            </div>
+
+            <% if user_signed_in? %>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                    <div class="account">
+                        <div class="avatar">
+                            <img src="<%=current_user.avatar%>" alt="None" />
+                        </div>
+                        <div class="name">
+                            <span><%=current_user.last_name<<current_user.first_name%></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                    <div class="btn-log">
+                    <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+                    </div>
+                </div>
+            <% else %>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                    <div class="btn-log">
+                    <%= link_to "Log in", new_user_session_path %><br />
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+</nav>
+
+    <div class="container-fluid">
+        <div class="row pt-1 out-card pb-5">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-12 p-0">
+                <div class="left-col d-flex">
+                    <ul class="list pt-4">
+                        <li>
+                            <a class="active" href="#">Feeds</a>
+                        </li>
+                        <li>
+                            <a href="#">Discover</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mid-col col-lg-8 col-md-10 col-sm-10 col-12 p-0 pb-4">
+                <div class="col-12 pl-0 pr-0">
+                    <div class="pt-4 pb-4">
+                        <div class="new-photo">
+                            <span>New Album</span>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="col-lg-12 col-12">
+                    <%= form_for @album do |f| %> 
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-12">
+                                <div class="form-group">
+                                    <%= f.label :title, "Title" %>
+                                    <%= f.text_field :title, class:"form-control" %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.label :mode_album, "Sharing mode"%>
+                                    <%= f.select :mode_album,[['Public', 'Public'], ['Private', 'Private']], {}, {class:'form-control'} %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.file_field :source_photo, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-12">
+                                <div class="form-group">
+                                    <%= f.label :description, "Description"%>
+                                    <%= f.text_area :description, class:"form-control" %>
+                                </div>
+                            </div>
+                        </div>
+                        <%= f.submit "Save", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+<%= stylesheet_link_tag "style_form.css" %>

@@ -11,7 +11,8 @@ require("channels")
     //require("packs/custom")
     //require("packs/posts.js")
     //require("packs/my_js.js")
-require("packs/modal_click.js")
+require("packs/form_validate.js")
+require("packs/upload_avatar_profile.js")
     //= require jquery.validate
     //= require jquery.validate.additional-methods
     //= require jquery3

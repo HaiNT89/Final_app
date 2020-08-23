@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                 <div class="nav-bar-brand">
-                    <a href="#">Fotobook</a>
+                    <%= link_to  "Fotobook", root_path %>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-3">
@@ -12,21 +12,31 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                <div class="account">
-                    <div class="avatar">
-                        <img src="https://picsum.photos/300" />
-                    </div>
-                    <div class="name">
-                        <span>Hieu Nguyen</span>
+            <% if user_signed_in? %>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                    <div class="account">
+                        <div class="avatar">
+                            <img src="<%=current_user.avatar%>" alt="None" />
+                        </div>
+                        <div class="name">
+                            <span><%=current_user.last_name<<current_user.first_name%></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-3">
-                <div class="btn-log">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                    <div class="btn-log">
                     <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+                    </div>
                 </div>
-            </div>
+            <% else %>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                    <div class="btn-log">
+                    <%= link_to "Log in", new_user_session_path %><br />
+                    </div>
+                </div>
+            <%end%>
         </div>
     </div>
 </nav>
@@ -49,8 +59,8 @@
             <div class="col-12 pl-0 pr-0">
                 <div class="pt-4 pb-4">
                     <div class="btn-select d-flex">
-                        <a href="#">Photo</a>
-                        <a class="active" href="#">Album</a>
+                        <%= link_to "photo", photos_path%>
+                        <%= link_to "Album", albums_path, class:"active"%>
                     </div>
                 </div>
             </div>
@@ -75,17 +85,17 @@
                                                 bottom: 0;
                                                 left: 0;
                                                 right: 0;" />
-                                        <img src="https://picsum.photos/300" />
+                                        <img src="" />
                                     </div>
                                 </div>
                                 <div class="col-6 p-2">
                                     <div class="right-item">
                                         <div class="header-item d-flex">
                                             <div class="circle-name">HN</div>
-                                            <div class="name"><%=@accounts.where(id: album.account_id).take.last_name%></div>
+                                            <div class="name"><%=@users.where(id: album.user_id).take.last_name%></div>
                                         </div>
                                         <div class="body-item">
-                                            <h5><%= link_to album.title_album,album%></h5>
+                                            <h5><%= link_to album.title,album%></h5>
                                             <h6><%= link_to "Edit", edit_album_path(album)%></h6>
                                             <p class="description m-0">
                                                 

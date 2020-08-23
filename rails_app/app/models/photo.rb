@@ -1,5 +1,5 @@
 class Photo < ApplicationRecord
-    # belongs_to :user
+    belongs_to :user
     has_many :reactions, as: :reactable, dependent: :destroy
     mount_uploader :source_photo, PictureUploader
     # validates :title_photo, :description_photo, :source_photo, :mode_photo, presence: true
