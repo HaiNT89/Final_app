@@ -18,8 +18,8 @@
                         <div class="avatar">
                             <img src="<%=current_user.avatar%>" alt="None" />
                         </div>
-                        <div class="name">
-                            <span><%=current_user.last_name<<current_user.first_name%></span>
+                        <div >
+                            <span><%= link_to  current_user.last_name<<current_user.first_name, user_path(current_user), class:"name "%></span>
                         </div>
                     </div>
                 </div>
@@ -85,18 +85,17 @@
                                                 bottom: 0;
                                                 left: 0;
                                                 right: 0;" />
-                                        <img src="" />
+                                        <%# <img src="<%=@photos.where(album_id: album.id).take.image%>
                                     </div>
                                 </div>
                                 <div class="col-6 p-2">
                                     <div class="right-item">
                                         <div class="header-item d-flex">
                                             <div class="circle-name">HN</div>
-                                            <div class="name"><%=@users.where(id: album.user_id).take.last_name%></div>
+                                            <div class="name"><%=@users.take.last_name%></div>
                                         </div>
                                         <div class="body-item">
                                             <h5><%= link_to album.title,album%></h5>
-                                            <h6><%= link_to "Edit", edit_album_path(album)%></h6>
                                             <p class="description m-0">
                                                 
                                             </p>

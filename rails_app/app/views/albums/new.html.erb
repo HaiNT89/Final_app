@@ -73,11 +73,11 @@
                                     <%= f.text_field :title, class:"form-control" %>
                                 </div>
                                 <div class="form-group">
-                                    <%= f.label :mode_album, "Sharing mode"%>
-                                    <%= f.select :mode_album,[['Public', 'Public'], ['Private', 'Private']], {}, {class:'form-control'} %>
+                                    <%= f.label :mode, "Sharing mode"%>
+                                    <%= f.select :mode,[['Public', 'Public'], ['Private', 'Private']], {}, {class:'form-control'} %>
                                 </div>
                                 <div class="form-group">
-                                    <%= f.file_field :source_photo, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
+                                    <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12 col-12">

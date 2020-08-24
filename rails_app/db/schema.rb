@@ -15,9 +15,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_070241) do
   create_table "albums", force: :cascade do |t|
     t.text "title"
     t.text "description"
-    t.string "mode_album"
-    t.datetime "time"
-    t.integer "count_album"
+    t.string "mode"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,10 +32,8 @@ ActiveRecord::Schema.define(version: 2020_08_20_070241) do
   create_table "photos", force: :cascade do |t|
     t.text "title"
     t.text "description"
-    t.string "source_photo"
-    t.datetime "time"
-    t.string "mode_photo"
-    t.integer "count_photo"
+    t.string "image"
+    t.string "mode"
     t.integer "user_id"
     t.integer "album_id"
     t.datetime "created_at", precision: 6, null: false
@@ -48,7 +44,6 @@ ActiveRecord::Schema.define(version: 2020_08_20_070241) do
 
   create_table "reactions", force: :cascade do |t|
     t.string "name_react"
-    t.integer "amount_react"
     t.integer "user_id"
     t.string "reactable_type"
     t.integer "reactable_id"
@@ -69,6 +64,10 @@ ActiveRecord::Schema.define(version: 2020_08_20_070241) do
     t.text "last_name"
     t.text "first_name"
     t.string "avatar"
+    t.integer "count_album"
+    t.integer "count_photo"
+    t.integer "count_follower"
+    t.integer "count_followee"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

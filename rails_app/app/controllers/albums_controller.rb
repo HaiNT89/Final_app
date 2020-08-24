@@ -1,9 +1,9 @@
 class AlbumsController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
     def index
-        @albums = Album.order(:created_at).last(6)
+        @albums = Album.order(created_at: :DESC)
         @users = User.joins(:albums)
-        #@accounts = @albums.account
+        @photos = Photo.all
        
      end
     def new
@@ -11,8 +11,9 @@ class AlbumsController < ApplicationController
     end
     def create
         @album = current_user.albums.new(album_params)
+        @photo = current_user.photos.new(photo_params)
         if @album.save
-           
+            @photo.update(album_id: @album.id)
             #flash[:success] = 'The album has just updated'
             redirect_to albums_path
         else
@@ -38,10 +39,11 @@ class AlbumsController < ApplicationController
     end
     private
     def album_params
-        params.require(:album).permit(:title, :description, :mode_album)
+        params.require(:album).permit(:title, :description, :mode)
     end
     def photo_params
-        params.require(:photo).permit(:title, :description, :mode_photo, :source_photos)
+        params.require(:album).permit(:title, :description, :image, :mode)
     end
+    
     
 end

@@ -245,3 +245,7 @@
     background: #fffcfc;
     box-shadow: 5px 5px 5px rgba(187, 176, 176, 0.5);
 }
+
+.active {
+    color: blue;
+}

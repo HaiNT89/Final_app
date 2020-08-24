@@ -4,13 +4,13 @@ require("jquery-validation")
 
 $(".edit_album").validate({
     rules: {
-        "album[title_album]": {
+        "album[title]": {
             required: true,
 
         }
     },
     messages: {
-        "album[title_album]": {
+        "album[title]": {
             required: "Title khong duoc rong"
 
         }

@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
     def index
-        @photos = Photo.all
+        @photos = Photo.order(created_at: :DESC).where("mode = ?", 'public')
         @users = User.joins(:photos)
     end
     def new
@@ -30,6 +30,6 @@ class PhotosController < ApplicationController
     end
     private
     def photo_params
-        params.require(:photo).permit(:source_photo, :description,:title,:mode_photo)
+        params.require(:photo).permit(:image, :description,:title,:mode)
     end
 end

@@ -18,7 +18,7 @@
                         <div class="avatar">
                             <img src="<%=current_user.avatar%>" alt="None" />
                         </div>
-                        <div class="name">
+                        <div >
                             <span><%= link_to  current_user.last_name<<current_user.first_name, user_path(current_user), class:"name "%></span>
                            
                         </div>
@@ -48,10 +48,10 @@
             <div class="left-col d-flex">
                 <ul class="list pt-4">
                     <li>
-                        <a class="active" href="#">Feeds</a>
+                        <%= link_to  "Feed", photos_path, class:'active' %>
                     </li>
                     <li>
-                        <a href="#">Discover</a>
+                         <%= link_to "Discover", discovers_photos_path %><br />
                     </li>
                 </ul>
             </div>
@@ -73,14 +73,14 @@
                                 <div class="col-6 p-0">
                                     <div class="left-item w-100" data-toggle="modal" data-target="<%= "#exampleModalCenter#{photo.id}" %>">
                                         <%# <img src="https://picsum.photos/300" /> %>
-                                        <%= image_tag photo.source_photo.url if photo.source_photo? %>
+                                        <%= image_tag photo.image.thumb_photo.url if photo.image? %>
                                     </div>
                                 </div>
                                 <div class="col-6 p-2">
                                     <div class="right-item">
                                         <div class="header-item d-flex">
                                             <div class="circle-name">HN</div>
-                                            <div class="name"><%=@users.where(id: photo.user_id).take.last_name%></div>
+                                            <div class="name"><%= link_to  @users.where(id: photo.user_id).take.last_name, user_path(@users.where(id: photo.user_id).take.id), class:"name "%></div>
                                         </div>
                                         <div class="body-item">
                                             <h3 class="title"><%= photo.title%></h3>
@@ -112,7 +112,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <img class="w-100" src="<%=photo.source_photo%>"/>
+                                        <img class="w-100" src="<%=photo.image%>"/>
                                     </div>
                                     <div class = "modal-title title">
                                         <h6><%=photo.description%></h6>
