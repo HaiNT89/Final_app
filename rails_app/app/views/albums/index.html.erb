@@ -71,14 +71,14 @@
                             <div class="items mt-3 mb-3 d-flex">
                                 <div class="col-6 p-0">
                                     <div class="left-item">
-                                        <img src="https://picsum.photos/300" style="
+                                        <img src="<%=@photos.where(album_id: album.id).take.image%>" style="
                                                 position: absolute;
                                                 transform: rotate(20deg);
                                                 top: 0;
                                                 bottom: 0;
                                                 left: 0;
                                                 right: 0;" />
-                                        <img src="https://picsum.photos/300" style="
+                                        <img src="<%=@photos.where(album_id: album.id).take.image%>" style="
                                                 position: absolute;
                                                 transform: rotate(10deg);
                                                 top: 0;
@@ -86,14 +86,14 @@
                                                 left: 0;
                                                 right: 0;" />
 
-                                        <%# <img src="<%=@photos.where(album_id: album.id).take.image%>
+                                        <img src="<%=@photos.where(album_id: album.id).take.image%>">
                                     </div>
                                 </div>
                                 <div class="col-6 p-2">
                                     <div class="right-item">
                                         <div class="header-item d-flex">
                                             <div class="circle-name">HN</div>
-                                            <div class="name"><%=@users.take.last_name%></div>
+                                            <div class="name"><%=album.user.last_name%></div>
                                         </div>
                                         <div class="body-item">
                                             <h5><%= link_to album.title,album%></h5>

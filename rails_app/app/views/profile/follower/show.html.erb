@@ -90,8 +90,8 @@
                                     </div>
                                     <div class="col-lg-12 col-12 mt-3 d-flex">
                                         <div class="sub-info">
-                                            <span class="number active"><%=@users.count_photo%></span>
-                                            <span><%= link_to  "Photos", profile_photo_path, class:"sub-name-info active"%></span>
+                                            <span class="number" ><%=@users.count_photo%></span>
+                                            <span><%= link_to  "Photos", profile_photo_path, class:"sub-name-info"%></span>
                                             <span class="sign-divide">|</span>
                                         </div>
 
@@ -108,9 +108,8 @@
                                         </div>
 
                                         <div class="sub-info">
-                                            <span class="number"><%=@users.count_followee%></span>
-                                            <span><%= link_to  "Follower", profile_follower_path, class:"sub-name-info"%></span>
-                                            
+                                            <span class="number active"><%=@users.count_followee%></span>
+                                            <span><%= link_to  "Follower", profile_follower_path, class:"sub-name-info active"%></span>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +120,7 @@
                     <div class="col-lg-12 col-12 ">
                         <% if current_user.id ==@users.id %>
                             <div class="mt-3 float-right">
-                                <%= link_to  "Add photo", new_photo_path, class:"btn btn-success" %>
+                                
                             </div>
                         <%else%>
                             <div class="mt-3"></div>
@@ -129,18 +128,42 @@
                     </div>
                     <div class="col-lg-12 col-12 ">
                         <div class="row">
-                            <%@photos.each do |photo|%>
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="items mt-3 mb-3 d-flex">
-                                        <div class="col-12 p-0">
-                                            <div class="left-item w-100">
-                                                <%= image_tag photo.image_url(:thumb_profile) if photo.image? %>
-                                                <% if current_user.id ==@users.id %>
-                                                    <label class="edit-img" for="file" style="cursor: pointer;">
-                                                        <%= link_to  "Edit", edit_photo_path(photo.id) %>
-                                                    </label>
-                                                <% end %>                                               
+                            <%@followee.each do |followee|%>
+                                <div class="col-lg-3 col-md-6 col-6  p-0 pl-1 pr-1 ">
+                                    <div class="items mt-3 mb-3">
+                                        <div class="avatar mb-1">
+                                            <img src="https://picsum.photos/300" alt="">
+                                        </div>
+                                        <div class="name mb-2"><%=User.where(id: followee.follower_id).first.last_name%></div>
+                                        <div class="number d-flex justify-content-between">
+                                            <div class="photo">
+                                                <span class="number"><%=User.where(id: followee.follower_id).first.count_photo%></span>
+                                                <span class="type">photo</span>
                                             </div>
+                                            
+                                            <div class="album mb-2">
+                                                <span class="number"><%=User.where(id: followee.follower_id).first.count_album%></span>
+                                                <span class="type">album</span>
+                                            </div>
+                                        </div>
+                                        <div class="flw">
+                                            <% if current_user.id ==@users.id %>
+                                                <%if current_user_is_following(current_user.id, followee.follower_id)%>
+                                                    <%= link_to "following", unfollow_user_path, :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn-following"%>
+                                                <%else%>
+                                                    <%= link_to "follow", follow_user_path(followee.follower_id), :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn"%>
+                                                <%end%>
+                                            <%else%>
+                                                <%if current_user_is_following(current_user.id, followee.follower_id)%>
+                                                    <%= link_to "following", unfollow_user_path(followee.follower_id), :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn-following"%>
+                                                <%else%>
+                                                    <% if current_user.id ==followee.follower_id%>
+                                                        <button class="custom-btn invisible" type="button" style=>NO</button>
+                                                    <%else%>
+                                                        <%= link_to "follow", follow_user_path(followee.follower_id), :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn"%>
+                                                    <%end%>
+                                                <%end%>
+                                            <%end%>
                                         </div>
                                     </div>
                                 </div>
@@ -151,4 +174,4 @@
             </div>
         </div>
     </div>
-<%= stylesheet_link_tag "profile_user_photo.css" %>
+<%= stylesheet_link_tag "profile_user_following.css" %>

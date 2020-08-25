@@ -73,14 +73,14 @@
                                 <div class="col-6 p-0">
                                     <div class="left-item w-100" data-toggle="modal" data-target="<%= "#exampleModalCenter#{photo.id}" %>">
                                         <%# <img src="https://picsum.photos/300" /> %>
-                                        <%= image_tag photo.image.thumb_photo.url if photo.image? %>
+                                        <%= image_tag photo.image.url if photo.image? %>
                                     </div>
                                 </div>
                                 <div class="col-6 p-2">
                                     <div class="right-item">
                                         <div class="header-item d-flex">
                                             <div class="circle-name">HN</div>
-                                            <div class="name"><%= link_to  @users.where(id: photo.user_id).take.last_name, profile_photo_path(@users.where(id: photo.user_id).take.id), class:"name "%></div>
+                                            <div class="name"><%= link_to  photo.user.last_name, profile_photo_path(photo.user.id), class:"name "%></div>
                                         </div>
                                         <div class="body-item">
                                             <h3 class="title"><%= photo.title%></h3>
@@ -90,8 +90,8 @@
                                         </div>
                                         <div class="footer-item d-flex justify-content-between" style="font-size: 12px;">
                                             <div class="reaction">
-                                                <i class="fas fa-heart"></i>
-                                                <span class="heart-count">123</span>
+                                            <%= link_to raw('<i class="fas fa-heart" id="reaction"></i>'), react_photo_path(photo.id), :method => :post, :remote => 'true', class:'item_heart_blue'%>
+                                            <span class="heart-count">123</span>
                                             </div>
                                             <div class="date-time">
                                                 <span><%=photo.created_at%></span>
