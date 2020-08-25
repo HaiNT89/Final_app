@@ -51,7 +51,7 @@
                             <a class="active" href="#">Feeds</a>
                         </li>
                         <li>
-                            <a href="#">Discover</a>
+                            <%= link_to  "Discover", discovers_photos_path %>
                         </li>
                     </ul>
                 </div>
@@ -74,7 +74,12 @@
                                             </div>
                                         <% else %>
                                             <div class="following">
-                                                <div class="custom-btn">follow</div>
+                                                <%if current_user_is_following(current_user.id, @users.id)%>
+                                                    <%= link_to "following", unfollow_user_path, :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn-following"%>
+                                                <%else%>
+                                                    <%= link_to "follow", follow_user_path, :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn"%>
+                                                <%end%>
+                                                <%# <div class="custom-btn">follow</div> %>
                                             </div>
                                         <%end%>
                                     </div>
@@ -85,8 +90,8 @@
                                     </div>
                                     <div class="col-lg-12 col-12 mt-3 d-flex">
                                         <div class="sub-info">
-                                            <span class="number"><%=@users.count_photo%></span>
-                                            <span class="sub-name-info">Photos</span>
+                                            <span class="number active"><%=@users.count_photo%></span>
+                                            <span class="sub-name-info active">Photos</span>
                                             <span class="sign-divide">|</span>
                                         </div>
 

@@ -19,7 +19,7 @@
                             <img src="<%=current_user.avatar%>" alt="None" />
                         </div>
                         <div >
-                            <span><%= link_to  current_user.last_name<<current_user.first_name, user_path(current_user), class:"name "%></span>
+                            <span><%= link_to  current_user.last_name<<current_user.first_name, profile_photo_path(current_user), class:"name "%></span>
                            
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                                     <div class="right-item">
                                         <div class="header-item d-flex">
                                             <div class="circle-name">HN</div>
-                                            <div class="name"><%= link_to  @users.where(id: photo.user_id).take.last_name, user_path(@users.where(id: photo.user_id).take.id), class:"name "%></div>
+                                            <div class="name"><%= link_to  @users.where(id: photo.user_id).take.last_name, profile_photo_path(@users.where(id: photo.user_id).take.id), class:"name "%></div>
                                         </div>
                                         <div class="body-item">
                                             <h3 class="title"><%= photo.title%></h3>

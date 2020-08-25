@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
     def index
-        @photos = Photo.order(created_at: :DESC).where("mode = ?", 'public')
+        @photos = Photo.order(created_at: :DESC).where("mode = ?", 'Public')
         @users = User.joins(:photos)
     end
     def new

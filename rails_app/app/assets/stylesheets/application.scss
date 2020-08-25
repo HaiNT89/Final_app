@@ -74,3 +74,15 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
     text-decoration: none;
     color: #ffffffaf;
 }
+
+.custom-btn-following {
+    cursor: pointer;
+    font-weight: bold;
+    outline: none !important;
+    border: 2px solid #ff4e00;
+    padding: 2px 20px;
+    border-radius: 25px;
+    background-color: #ff4e00;
+    color: white;
+    animation: ease-in 0.3s;
+}

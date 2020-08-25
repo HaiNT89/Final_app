@@ -19,7 +19,7 @@
                             <img src="<%=current_user.avatar%>" alt="None" />
                         </div>
                         <div >
-                            <span><%= link_to  current_user.last_name<<current_user.first_name, user_path(current_user), class:"name "%></span>
+                            <span><%= link_to  current_user.last_name<<current_user.first_name, profile_photo_path(current_user), class:"name "%></span>
                         </div>
                     </div>
                 </div>
