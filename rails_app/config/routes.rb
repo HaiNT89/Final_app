@@ -5,24 +5,30 @@ Rails.application.routes.draw do
   post ':id/follow_user', to: 'relationships#follow_user', as: :follow_user
   post ':id/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
 
-  resources :reactions
+  get 'reactions/react_photo'
+  get 'reactions/unreact_photo'
+  post ':id/react_photo', to: 'reactions#react_photo', as: :react_photo
+  post ':id/unreact_photo', to: 'reactions#unreact_photo', as: :unreact_photo
+
+  get 'reactions/react_album'
+  get 'reactions/unreact_album'
+  post ':id/react_album', to: 'reactions#react_album', as: :react_album
+  post ':id/unreact_album', to: 'reactions#unreact_album', as: :unreact_album
+
+  post ':id/edit_profile_user', to: 'user#edit_profile_user', as: :edit_profile_user
   
   devise_for :users, controllers: {
     sessions: 'users/sessions' 
   }
-  #resources :users
-  #get '/profile/photo/:id', to: 'proflie/photo#show', as: 'profile_photo'
-  # get '/users/:id', to: 'users#show', as: 'user'
-  #get '/discovers(.:format)', to: 'discovers#index', as: 'discover'
   namespace :discovers do
     resources :albums, :photos, only: [:index]
   end
   namespace :profile do
-    resources :albums, :photos, only: [:show]
+    resources :albums, :photos, :following, :follower, only: [:show]
   end
   root to: "photos#index"
   #resources :follows
-  resources :follows, :only => [:create, :destroy]
+  #resources :follows, :only => [:create, :destroy]
   resources :albums
     # resources :newest
   resources :photos
