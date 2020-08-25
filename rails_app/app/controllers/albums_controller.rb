@@ -2,9 +2,7 @@ class AlbumsController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
     def index
         @albums = Album.order(created_at: :DESC)
-        @users = User.joins(:albums)
-        @photos = Photo.all
-       
+        @photos = Photo.all    
      end
     def new
         @album = current_user.albums.new

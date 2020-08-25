@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
     def index
         @photos = Photo.order(created_at: :DESC).where("mode = ?", 'Public')
-        @users = User.joins(:photos)
+        @react = Reaction.where("reactable_type=?", 'Photo')
     end
     def new
         @photo = current_user.photos.new

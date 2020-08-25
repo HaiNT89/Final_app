@@ -71,14 +71,14 @@
                             <div class="items mt-3 mb-3 d-flex">
                                 <div class="col-6 p-0">
                                     <div class="left-item">
-                                        <img src="<%=@photos.where(album_id: album.id).take.image%>" style="
+                                        <img src="<%=album.photos[0].image%>" style="
                                                 position: absolute;
                                                 transform: rotate(20deg);
                                                 top: 0;
                                                 bottom: 0;
                                                 left: 0;
                                                 right: 0;" />
-                                        <img src="<%=@photos.where(album_id: album.id).take.image%>" style="
+                                        <img src="<%=album.photos[0].image%>" style="
                                                 position: absolute;
                                                 transform: rotate(10deg);
                                                 top: 0;
@@ -86,7 +86,7 @@
                                                 left: 0;
                                                 right: 0;" />
 
-                                        <img src="<%=@photos.where(album_id: album.id).take.image%>">
+                                        <img src="<%=album.photos[0].image%>">
                                     </div>
                                 </div>
                                 <div class="col-6 p-2">

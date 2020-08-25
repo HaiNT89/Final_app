@@ -12,7 +12,8 @@ require("channels")
     //require("packs/posts.js")
     //require("packs/my_js.js")
 require("packs/form_validate.js")
-require("packs/upload_avatar_profile.js")
+    //require("packs/upload_avatar_profile.js")
+require("packs/validate_js.js")
     //= require jquery
     //= require jquery_ujs
     //= require jquery.validate

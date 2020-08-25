@@ -1,17 +1,10 @@
 class ReactionsController < ApplicationController
-    def new
+    def react_photo
         
-    end
-    def create
-        @photos = Photo.find(params[:id])
-        @react = @photos.reactions.create
+        @photo = Photo.find(params[:id])
+        @react = @photo.reactions.create(user_id: current_user.id)
         if @react.save
-            @react.update (user_id: current_user.id)
-            #flash[:success] = 'The album has just updated'
             redirect_to photos_path
-        else
-            render 'new'
         end
-        
     end
 end
