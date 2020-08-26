@@ -48,10 +48,10 @@
                 <div class="left-col d-flex">
                     <ul class="list pt-4">
                         <li>
-                            <a href="#">Feeds</a>
+                            <%= link_to  "Feed", photos_path %>
                         </li>
                         <li>
-                            <%= link_to  "Discover", discovers_photos_path %>
+                            <%= link_to "Discover", discovers_photos_path %><br />
                         </li>
                     </ul>
                 </div>
@@ -63,7 +63,7 @@
                             <div class="row">
                                 <div class="col-lg-3 col-3">
                                     <div class="avatar">
-                                        <img src="https://picsum.photos/300" alt="">
+                                        <img src="<%=current_user.avatar%>" alt="none">
                                     </div>
                                 </div>
                                 <div class="col-lg-9 col-9 p-0">

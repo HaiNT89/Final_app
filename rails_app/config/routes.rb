@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   namespace :profile do
     resources :albums, :photos, :following, :follower, only: [:show]
   end
-  root to: "photos#index"
+  root to: "discovers/photos#index"
   #resources :follows
   #resources :follows, :only => [:create, :destroy]
   resources :albums

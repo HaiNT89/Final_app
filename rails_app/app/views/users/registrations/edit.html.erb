@@ -61,18 +61,14 @@
                 </div>
                 <div class="row p-5 m-5">
                     <div class="col-lg-4 col-4">
-                  
-                    </div>
-                    <div class="col-lg-8 col-8">
-                        <div class="avatar-file">
-                            <input type="file"  accept="image/*" name="image" id="file"   style="display: none;">
-                            <label for="file" style="cursor: pointer;">Upload Image</label>
-                            <img id="output" width="200" />
+                    <%= form_for current_user, url: edit_profile_user_path(current_user.id), method: :post do |d|%>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-4">
-                    <%= form_for current_user, url: edit_profile_user_path(current_user.id), method: :post do |f|%>
+                        <div class="col-lg-8 col-8">
+                            <div class="avatar-file">
+                                <%= d.file_field :avatar, accept: "image/jpeg, image/gif, image/png, image/jpg" %>
+                            </div>
                         </div>
+                        <div class="col-lg-4 col-4"></div>
                         <div class="col-lg-8 col-8">
                             <p class="title-area">Basic Infomation</p>
                         </div>
@@ -80,27 +76,28 @@
                             <p class="filed-text">First Name</p>
                         </div>
                         <div class="col-lg-8 col-8">
-                            <%= f.text_field :first_name %>
+                            <%= d.text_field :first_name %>
                         </div>
                         <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
                             <p class="filed-text">Last Name</p>
                         </div>
                         <div class="col-lg-8 col-8">
-                            <%= f.text_field :last_name %>
+                            <%= d.text_field :last_name %>
                         </div>
                         <div class="col-lg-4 col-4 d-flex justify-content-end pr-0">
                             <p class="filed-text">Email</p>
                         </div>
                         <div class="col-lg-8 col-8">
-                            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                            <%= d.email_field :email, autofocus: true, autocomplete: "email" %>
                         </div>
                         <div class="col-lg4 col-4">
 
                         </div>
                         <div class="col-lg-8 col-8">
-                            <%= f.submit "Save", class:"btn btn-success" %>
+                            <%= d.submit "Save", class:"btn btn-success" %>
                         </div>
                     <%end%>
+
                     <span class="line-space"></span>
                     <div class="col-lg-4 col-4">
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

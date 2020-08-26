@@ -1,0 +1,164 @@
+<nav class="nav-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                <div class="nav-bar-brand">
+                    <%= link_to  "Fotobook", root_path %>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-3">
+                <div class="search-text">
+                    <input type="text" name="search" id="search" placeholder="Search Photo / Album" />
+                </div>
+            </div>
+
+            <% if user_signed_in? %>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                    <div class="account">
+                        <div class="avatar">
+                            <img src="<%=current_user.avatar%>" alt="None" />
+                        </div>
+                        <div>
+                            <span><%= link_to  current_user.last_name<<current_user.first_name, profile_photo_path(current_user), class:"name "%></span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                    <div class="btn-log">
+                        <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+                    </div>
+                </div>
+                <% else %>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                        <div class="btn-log">
+                            <%= link_to "Log in", new_user_session_path %><br />
+                        </div>
+                    </div>
+                <%end%>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row pt-1 out-card pb-5">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-12 p-0">
+            <div class="left-col d-flex">
+                <ul class="list pt-4">
+                    <li>
+                        <%= link_to  "Feed", photos_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Discover", discovers_photos_path,  class:'active' %><br />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mid-col col-lg-8 col-md-10 col-sm-10 col-12 p-0 pb-4">
+            <div class="col-12 pl-0 pr-0">
+                <div class="pt-4 pb-4">
+                    <div class="btn-select d-flex">
+                        <%= link_to "photo", discovers_photos_path, class:"active"%>
+                        <%= link_to "Album", discovers_albums_path%>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-12">
+                <div class="row">
+                    <%@photos.each do |photo|%>
+                        <div class="col-lg-6 col-md-12 col-12">
+                            <div class="items mt-3 mb-3 d-flex">
+                                <div class="col-6 p-0">
+                                    <div class="left-item w-100" data-toggle="modal" data-target="<%= "#exampleModalCenter#{photo.id}"%>">
+                                        <%# <img src="https://picsum.photos/300" /> %>
+                                        <%= image_tag photo.image.url if photo.image? %>
+                                    </div>
+                                </div>
+                                <div class="col-6 p-2">
+                                    <div class="right-item">
+                                        <div class="header-item d-flex">
+                                            <div class="circle-name">HN</div>
+                                            <div class="name">
+                                                <%= link_to  photo.user.last_name, profile_photo_path(photo.user.id), class:"name "%>
+                                            </div>
+                                            <div class="following float-right">
+                                            <%if current_user%>
+                                                <% if current_user.id ==photo.user.id %>
+
+                                                <%else%>
+                                                    <%if current_user_is_following(current_user.id, photo.user.id)%>
+                                                        <%= link_to "following", unfollow_user_path(photo.user.id), :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn-following"%>
+                                                    <%else%>
+                                                        <% if current_user.id ==photo.user.id%>
+                                                            <button class="custom-btn invisible" type="button" style=>NO</button>
+                                                        <%else%>
+                                                            <%= link_to "follow", follow_user_path(photo.user.id), :method => :post, :remote => 'true',id: 'follow-button', :class => "custom-btn"%>
+                                                        <%end%>
+                                                    <%end%>
+                                                <%end%>
+                                            <%else%>
+                                            <%end%>
+                                            </div>
+                                        </div>
+                                        <div class="body-item">
+                                            <h3 class="title">
+                                                <%= photo.title%>
+                                            </h3>
+                                            <p class="description m-0">
+                                                <%=photo.description%>
+                                            </p>
+                                        </div>
+                                        <div class="footer-item d-flex justify-content-between" style="font-size: 12px;">
+                                            <div class="reaction">
+                                            <%if current_user%>
+                                                <%if (@react.exists? reactable_id: photo.id, user_id: current_user.id)==true%>
+                                                    <%= link_to raw('<i class="fas fa-heart" id="reaction"></i>'), unreact_photo_path(photo.id), :method => :post, :remote => 'true', class:'item_heart_blue'%>
+                                                <%else%>
+                                                    <%= link_to raw('<i class="fas fa-heart" id="reaction"></i>'), react_photo_path(photo.id), :method => :post, :remote => 'true', class:'item_heart_gray'%>
+                                                 <%end%>
+                                            <%else%>
+                                                <%= link_to raw('<i class="fas fa-heart" id="reaction"></i>'), new_user_session_path, class:'item_heart_blue'%>
+                                            <%end%>
+                                            <span class="heart-count"><%=@react.where("reactable_id=?", photo.id).size%></span>
+                                            </div>
+                                            <div class="date-time">
+                                                <span><%=photo.created_at%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%#Modal %>
+                        <div class="modal fade" id="<%= "exampleModalCenter#{photo.id}"%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header title">
+                                        <h4 class="modal-title title" id="exampleModalLongTitle">
+                                            <%=photo.title%>
+                                        </h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img class="w-100" src="<%=photo.image%>" />
+                                    </div>
+                                    <div class="modal-header">
+                                        <h6 class="modal-title title" id="exampleModalLongTitle">
+                                            <%=photo.description%>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= stylesheet_link_tag "photos.css" %>

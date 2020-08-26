@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_195441) do
+ActiveRecord::Schema.define(version: 2020_08_20_070241) do
 
   create_table "albums", force: :cascade do |t|
     t.text "title"
@@ -38,13 +38,11 @@ ActiveRecord::Schema.define(version: 2020_08_24_195441) do
     t.integer "album_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "count_like"
     t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
   create_table "reactions", force: :cascade do |t|
-    t.string "name_react"
     t.integer "user_id"
     t.string "reactable_type"
     t.integer "reactable_id"
@@ -65,10 +63,10 @@ ActiveRecord::Schema.define(version: 2020_08_24_195441) do
     t.text "last_name"
     t.text "first_name"
     t.string "avatar"
-    t.integer "count_album"
-    t.integer "count_photo"
-    t.integer "count_follower"
-    t.integer "count_followee"
+    t.integer "count_album", default: 0
+    t.integer "count_photo", default: 0
+    t.integer "count_follower", default: 0
+    t.integer "count_followee", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

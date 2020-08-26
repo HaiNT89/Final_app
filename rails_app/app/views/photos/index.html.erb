@@ -68,59 +68,68 @@
             <div class="col-lg-12 col-12">
                 <div class="row">
                     <%@photos.each do |photo|%>
-                        <div class="col-lg-6 col-md-12 col-12">
-                            <div class="items mt-3 mb-3 d-flex">
-                                <div class="col-6 p-0">
-                                    <div class="left-item w-100" data-toggle="modal" data-target="<%= "#exampleModalCenter#{photo.id}" %>">
-                                        <%# <img src="https://picsum.photos/300" /> %>
-                                        <%= image_tag photo.image.url if photo.image? %>
-                                    </div>
-                                </div>
-                                <div class="col-6 p-2">
-                                    <div class="right-item">
-                                        <div class="header-item d-flex">
-                                            <div class="circle-name">HN</div>
-                                            <div class="name"><%= link_to  photo.user.last_name, profile_photo_path(photo.user.id), class:"name "%></div>
-                                        </div>
-                                        <div class="body-item">
-                                            <h3 class="title"><%= photo.title%></h3>
-                                            <p class="description m-0">
-                                                <%=photo.description%>  
-                                            </p>
-                                        </div>
-                                        <div class="footer-item d-flex justify-content-between" style="font-size: 12px;">
-                                            <div class="reaction">
-                                            <%= link_to raw('<i class="fas fa-heart" id="reaction"></i>'), react_photo_path(photo.id), :method => :post, :remote => 'true', class:'item_heart_blue'%>
-                                            <span class="heart-count">123</span>
-                                            </div>
-                                            <div class="date-time">
-                                                <span><%=photo.created_at%></span>
+                            <%if current_user_is_following(current_user.id, photo.user.id) || (photo.user.id==current_user.id) %>
+                                <div class="col-lg-6 col-md-12 col-12">
+                                    <div class="items mt-3 mb-3 d-flex">
+                                        <div class="col-6 p-0">
+                                            <div class="left-item w-100" data-toggle="modal" data-target="<%= "#exampleModalCenter#{photo.id}" %>">
+                                                <%# <img src="https://picsum.photos/300" /> %>
+                                                <%= image_tag photo.image.url if photo.image? %>
                                             </div>
                                         </div>
+                                        <div class="col-6 p-2">
+                                            <div class="right-item">
+                                                <div class="header-item d-flex">
+                                                    <div class="circle-name">HN</div>
+                                                    <div class="name"><%= link_to  photo.user.last_name, profile_photo_path(photo.user.id), class:"name "%></div>
+                                                </div>
+                                                <div class="body-item">
+                                                    <h3 class="title"><%= photo.title%></h3>
+                                                    <p class="description m-0">
+                                                        <%=photo.description%>  
+                                                    </p>
+                                                </div>
+                                                <div class="footer-item d-flex justify-content-between" style="font-size: 12px;">
+                                                    <div class="reaction">
+                                                        <%if (@react.exists? reactable_id: photo.id, user_id: current_user.id)==true%>
+                                                            <%= link_to raw('<i class="fas fa-heart" id="reaction"></i>'), unreact_photo_path(photo.id), :method => :post, :remote => 'true', class:'item_heart_blue'%>
+                                                        <%else%>
+                                                            <%= link_to raw('<i class="fas fa-heart" id="reaction"></i>'), react_photo_path(photo.id), :method => :post, :remote => 'true', class:'item_heart_gray'%>
+                                                        <%end%>
+                                                        <span class="heart-count"><%=@react.where("reactable_id=?", photo.id).size%></span>
+                                                    </div>
+                                                    <div class="date-time">
+                                                        <span><%=photo.created_at%></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <%#Modal %>
-                        <div class="modal fade" id="<%= "exampleModalCenter#{photo.id}" %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title title" id="exampleModalLongTitle"><%=photo.title%></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img class="w-100" src="<%=photo.image%>"/>
-                                    </div>
-                                    <div class = "modal-title title">
-                                        <h6><%=photo.description%></h6>
+                                <%#Modal %>
+                                <div class="modal fade" id="<%= "exampleModalCenter#{photo.id}" %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title title" id="exampleModalLongTitle"><%=photo.title%></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img class="w-100" src="<%=photo.image%>"/>
+                                            </div>
+                                            <div class = "modal-title title">
+                                                <h6><%=photo.description%></h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    <%end%>
+                            <%end%>
+                        <%end%>
+                    <div class="container pagination justify-content-center">
+                        <%= paginate @photos, theme: 'twitter-bootstrap-4'%>
+                    </div>
                 </div>
             </div>
         </div>

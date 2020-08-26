@@ -1,8 +1,8 @@
 class AlbumsController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
+    before_action :authenticate_user!
     def index
-        @albums = Album.order(created_at: :DESC)
-        @photos = Photo.all    
+        @albums = Album.order(created_at: :DESC).where("mode = ?", 'Public').page(params[:page]).per(4)
+        @react = Reaction.where("reactable_type=?", 'Album')
      end
     def new
         @album = current_user.albums.new

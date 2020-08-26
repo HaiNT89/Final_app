@@ -1,8 +1,10 @@
 class PhotosController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :show, :update, :destroy]
+    before_action :authenticate_user!
     def index
-        @photos = Photo.order(created_at: :DESC).where("mode = ?", 'Public')
+        
+        @photos = Photo.order(created_at: :DESC).where("mode = ?", 'Public').page(params[:page]).per(4)
         @react = Reaction.where("reactable_type=?", 'Photo')
+        
     end
     def new
         @photo = current_user.photos.new

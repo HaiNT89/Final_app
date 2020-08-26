@@ -48,10 +48,10 @@
                 <div class="left-col d-flex">
                     <ul class="list pt-4">
                         <li>
-                            <a href="#">Feeds</a>
+                            <%= link_to  "Feed", photos_path %>
                         </li>
                         <li>
-                            <%= link_to  "Discover", discovers_photos_path %>
+                            <%= link_to "Discover", discovers_photos_path %><br />
                         </li>
                     </ul>
                 </div>
@@ -63,7 +63,7 @@
                             <div class="row">
                                 <div class="col-lg-3 col-3">
                                     <div class="avatar">
-                                        <img src="https://picsum.photos/300" alt="">
+                                        <img src="<%=current_user.avatar%>" alt="None">
                                     </div>
                                 </div>
                                 <div class="col-lg-9 col-9 p-0">
@@ -130,18 +130,18 @@
                     <div class="col-lg-12 col-12 ">
                         <div class="row">
                             <%@photos.each do |photo|%>
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="items mt-3 mb-3 d-flex">
-                                        <div class="col-12 p-0">
-                                            <div class="left-item w-100">
-                                                <%= image_tag photo.image_url(:thumb_profile) if photo.image? %>
-                                                <% if current_user.id ==@users.id %>
-                                                    <label class="edit-img" for="file" style="cursor: pointer;">
-                                                        <%= link_to  "Edit", edit_photo_path(photo.id) %>
-                                                    </label>
-                                                <% end %>                                               
-                                            </div>
-                                        </div>
+                                <div class="col-lg-3 col-md-6 col-12 mt-3">
+                                    <div class="img d-flex justify-content-md-center">
+                                        <%= image_tag photo.image_url(:thumb_profile) if photo.image? %>
+                                        <!--<i class="fas fa-lock lock-img"></i>-->
+                                        <% if current_user.id ==@users.id %>
+                                            <label class="edit-img" for="file" style="cursor: pointer;">
+                                                <%= link_to  "Edit", edit_photo_path(photo.id) %>
+                                            </label>
+                                        <% end %>                                                                                
+                                    </div>
+                                    <div class="title-img">
+                                        <span><%=photo.title%></span>
                                     </div>
                                 </div>
                             <%end%>            

@@ -2,8 +2,8 @@ module Discovers
     class PhotosController < ApplicationController
    
         def index
-            @photos = Photo.order(created_at: :DESC).where("mode = ?", 'public')
-            @users = User.joins(:photos)
+            @photos = Photo.order(created_at: :DESC).where("mode = ?", 'Public')
+            @react = Reaction.where("reactable_type=?", 'Photo')
         end
 
     end
