@@ -65,3 +65,47 @@
 
 
 
+---
+# 26-08-2020
+---
+
+### Code issues
+
+1. Tính năng thiếu quá nhiều.
+
+2. Route define cũng ko tốt, khá tè le
+
+3. Tên thưc mục trong rails app viết thường, ko nên viết hoa
+
+4. Chỉ tạo ra và sử dụng custom devise controller khi cần override code của devise. Đang ko thấy override gì cả mà tạo ra các controler và khai báo trong route devise sử dụng custom SessionsController làm gì!
+
+5. Hạn chế sử dụng `!important` khi viết css. 
+
+6. Để hiển thị Photo/Album có bao nhiêu lượt likes thì dùng `counter_cache` mà làm. Hiển thị 1 Photo/Album mà tốn 1 câu query xuống db để đếm số like thì 1 page hiển thị 30 Photo/Album thì cần 30 câu queries. Như vậy sẽ làm performance của app rất tệ. Tương tự cho việc show User có bao nhiêu Photo/Album.
+
+7. Hạn chế viết nhiều logic và câu query trong view.
+
+8. Đã học qua layout mà ko biết sử dụng, code của header và sidebar giống ngau giữa các trang mà cứ phải copy đi copy lại trong hầu hết các view!
+
+9. Form chả có validate ở client gì cả. 
+
+10. Có nhiều câu query cứ lặp đi lặp lại. Nên sử dụng scope để xài chung giữa các nơi. Khi cần thì chỉ cần chỉnh sửa 1 chỗ.
+
+11. Đặt tên biến cho phù hợp, biến nào chưa single object thì cần chia ở số ít, cái nào chứa collection thì chia ở số nhiều.
+
+12. Code controller xử lý ko trọn vẹn. Ví dụ `ReactionsController#react_photo` nếu `@react.save` thì system sẽ ko redirect user đi qua `photos_path` mà sẽ render template `react_photo` (default behavior của Rails). Mà trong code chả có template `react_photo` => ứng dụng bị lỗi!
+
+13. Không được sử dụng inline css trong template. Hiện nay đang sử dụng khá nhiều!
+
+14. Cấy cái follow/unfollow trong view thì thấy đang request theo kiểu ajax (remote: true) mà trong conoller thì lại không thấy xử lý theo kiểu này @.@
+
+
+### Bugs
+
+1. Modal view photo trong album ko work.
+
+2. Dùng boostrap mà page chả có responsive gì cả. Xem trên màn hình nhỏ như đt nhìn app thấy gớm!
+
+3. Sign out ko work.
+
+4. UI khác nhiều so với design.
